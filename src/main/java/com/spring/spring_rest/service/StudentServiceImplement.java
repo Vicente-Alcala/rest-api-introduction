@@ -1,5 +1,8 @@
 package com.spring.spring_rest.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import com.spring.spring_rest.dto.StudentDto;
@@ -29,5 +32,43 @@ public class StudentServiceImplement implements StudentService {
         Student student = studentRepo.findById(theId)
                 .orElseThrow(() -> new StudentNotFoundException("Student id " + theId + " not found!"));
         return StudentMapper.mapToStudentDto(student);
+    }
+
+    @Override
+    public List<StudentDto> getAllStudents() {
+        List<Student> students = studentRepo.findAll();
+        return students.stream().map(
+                (student) -> StudentMapper.mapToStudentDto(student)).collect(Collectors.toList());
+
+    }
+
+    @Override 
+    public StudentDto updateStudent(Long theId, StudentDto theStudentDto) {
+        Student student = studentRepo.findById(theId).orElseThrow(() -> new StudentNotFoundException("Student id " + theId + " not found!"));
+
+        student.setFirstName(theStudentDto.getFirstName());
+        student.setLastName(theStudentDto.getLastName());
+        student.setEmail(theStudentDto.getEmail());
+        
+        Student saved = studentRepo.save(student);
+        return StudentMapper.mapToStudentDto(saved);
+    }
+
+    @Override 
+    public StudentDto patchStudent(Long theId, StudentDto theStudentDto) {
+        Student student = studentRepo.findById(theId).orElseThrow(() -> new StudentNotFoundException("Student id " + theId + " not found!"));
+        
+        if(theStudentDto.getFirstName() != null) {
+            student.setFirstName(theStudentDto.getFirstName());
+        }
+        if(theStudentDto.getLastName() != null) {
+            student.setLastName(theStudentDto.getLastName());
+        }
+        if(theStudentDto.getEmail() != null) {
+            student.setEmail(theStudentDto.getEmail());
+        }
+
+        Student saved = studentRepo.save(student);
+        return StudentMapper.mapToStudentDto(saved);
     }
 }
