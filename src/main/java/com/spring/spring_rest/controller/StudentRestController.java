@@ -16,6 +16,7 @@ import java.util.List;
 import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -69,6 +70,13 @@ public class StudentRestController {
     public ResponseEntity<StudentDto> patchStudent(@PathVariable Long id, @Valid @RequestBody StudentDto theStudentDto) {
         StudentDto studentDto = studentService.patchStudent(id, theStudentDto);
         return ResponseEntity.ok(studentDto);
+    }
+
+    // delete student REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteStudentById(@PathVariable Long id) {
+        studentService.deleteStudentById(id);
+        return ResponseEntity.ok("Student deleted successfully!");
     }
 
 }
