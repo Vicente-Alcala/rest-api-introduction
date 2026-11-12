@@ -7,6 +7,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * JPA entity representing a student record
+ * mapped to the {@code student} database table.
+ */
 @Entity
 @Table(name="student")
 public class Student {
@@ -23,7 +27,6 @@ public class Student {
 
     @Column(name="email", nullable=false)
     private String email;
-
 
     public Student() {
     }
@@ -66,5 +69,4 @@ public class Student {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }

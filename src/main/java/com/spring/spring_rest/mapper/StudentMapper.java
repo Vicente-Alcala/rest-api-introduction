@@ -3,9 +3,20 @@ package com.spring.spring_rest.mapper;
 import com.spring.spring_rest.dto.StudentDto;
 import com.spring.spring_rest.entity.Student;
 
+/**
+ * Utility mapper class responsible for converting between {@link Student} JPA
+ * entities
+ * and {@link StudentDto} data transfer objects.
+ */
 public class StudentMapper {
 
-    // method will map Student to StudentDto
+    /**
+     * Converts a {@link Student} entity into a {@link StudentDto}.
+     *
+     * @param theStudent the {@code Student} entity to convert
+     * @return the corresponding {@code StudentDto}
+     *         containing the student's data
+     */
     public static StudentDto mapToStudentDto(Student theStudent) {
         return new StudentDto(theStudent.getId(),
                 theStudent.getFirstName(),
@@ -13,7 +24,12 @@ public class StudentMapper {
                 theStudent.getEmail());
     }
 
-    // method will map StudentDto to Student
+    /**
+     * Converts a {@link StudentDto} into a {@link Student} entity.
+     *
+     * @param theStudentDto the {@code StudentDto} to convert
+     * @return the corresponding {@code Student} entity ready for persistence
+     */
     public static Student mapToStudent(StudentDto theStudentDto) {
         return new Student(theStudentDto.getId(),
                 theStudentDto.getFirstName(),

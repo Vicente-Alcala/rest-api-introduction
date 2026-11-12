@@ -11,15 +11,29 @@ import com.spring.spring_rest.exception.StudentNotFoundException;
 import com.spring.spring_rest.mapper.StudentMapper;
 import com.spring.spring_rest.repository.StudentRepository;
 
+/**
+ * Service implementation for managing {@link StudentDto}
+ * resources using {@link StudentRepository}.
+ */
 @Service
 public class StudentServiceImplement implements StudentService {
 
     private StudentRepository studentRepo;
 
+    /**
+     * Constructs a new {@code StudentServiceImplement}
+     * with the specified repository.
+     *
+     * @param studentRepo the JPA repository for student
+     *                    persistence operations
+     */
     public StudentServiceImplement(StudentRepository studentRepo) {
         this.studentRepo = studentRepo;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StudentDto createStudent(StudentDto theStudentDto) {
         Student theStudent = StudentMapper.mapToStudent(theStudentDto);
@@ -27,44 +41,73 @@ public class StudentServiceImplement implements StudentService {
         return StudentMapper.mapToStudentDto(saved);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @throws StudentNotFoundException if no student
+     *                                  exists with the given {@code theId}
+     */
     @Override
     public StudentDto getStudentById(Long theId) {
         Student student = studentRepo.findById(theId)
-                .orElseThrow(() -> new StudentNotFoundException("Student id " + theId + " not found!"));
+                .orElseThrow(() -> new StudentNotFoundException(
+                        "Student id " + theId + " not found!"));
         return StudentMapper.mapToStudentDto(student);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<StudentDto> getAllStudents() {
         List<Student> students = studentRepo.findAll();
         return students.stream().map(
-                (student) -> StudentMapper.mapToStudentDto(student)).collect(Collectors.toList());
+                (student) -> StudentMapper.mapToStudentDto(
+                        student))
+                .collect(
+                        Collectors.toList());
 
     }
 
-    @Override 
+    /**
+     * {@inheritDoc}
+     *
+     * @throws StudentNotFoundException if no student
+     *                                  exists with the given {@code theId}
+     */
+    @Override
     public StudentDto updateStudent(Long theId, StudentDto theStudentDto) {
-        Student student = studentRepo.findById(theId).orElseThrow(() -> new StudentNotFoundException("Student id " + theId + " not found!"));
+        Student student = studentRepo.findById(theId).orElseThrow(
+                () -> new StudentNotFoundException(
+                        "Student id " + theId + " not found!"));
 
         student.setFirstName(theStudentDto.getFirstName());
         student.setLastName(theStudentDto.getLastName());
         student.setEmail(theStudentDto.getEmail());
-        
+
         Student saved = studentRepo.save(student);
         return StudentMapper.mapToStudentDto(saved);
     }
 
-    @Override 
+    /**
+     * {@inheritDoc}
+     *
+     * @throws StudentNotFoundException if no student
+     *                                  exists with the given {@code theId}
+     */
+    @Override
     public StudentDto patchStudent(Long theId, StudentDto theStudentDto) {
-        Student student = studentRepo.findById(theId).orElseThrow(() -> new StudentNotFoundException("Student id " + theId + " not found!"));
-        
-        if(theStudentDto.getFirstName() != null) {
+        Student student = studentRepo.findById(theId).orElseThrow(
+                () -> new StudentNotFoundException(
+                        "Student id " + theId + " not found!"));
+
+        if (theStudentDto.getFirstName() != null) {
             student.setFirstName(theStudentDto.getFirstName());
         }
-        if(theStudentDto.getLastName() != null) {
+        if (theStudentDto.getLastName() != null) {
             student.setLastName(theStudentDto.getLastName());
         }
-        if(theStudentDto.getEmail() != null) {
+        if (theStudentDto.getEmail() != null) {
             student.setEmail(theStudentDto.getEmail());
         }
 
@@ -72,9 +115,17 @@ public class StudentServiceImplement implements StudentService {
         return StudentMapper.mapToStudentDto(saved);
     }
 
-    @Override 
+    /**
+     * {@inheritDoc}
+     *
+     * @throws StudentNotFoundException if no student
+     *                                  exists with the given {@code theId}
+     */
+    @Override
     public void deleteStudentById(Long theId) {
-        studentRepo.findById(theId).orElseThrow(() -> new StudentNotFoundException("Student id " + theId + " not found!"));
+        studentRepo.findById(theId).orElseThrow(
+                () -> new StudentNotFoundException(
+                        "Student id " + theId + " not found!"));
 
         studentRepo.deleteById(theId);
     }

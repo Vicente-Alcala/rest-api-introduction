@@ -1,5 +1,10 @@
 package com.spring.spring_rest.entity;
 
+/**
+ * POJO representing a standardized JSON
+ * error response returned by the REST API
+ * when an exception occurs.
+ */
 public class StudentErrorResponse {
     private int status;
     private String message;
@@ -38,5 +43,4 @@ public class StudentErrorResponse {
         this.timestamp = timestamp;
     }
 
-    
 }
