@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "764c244a-a699-4035-941a-38f57ec62f4a",
+    "_postman_id": "f5ea04ff-fde6-4a20-9108-d95e5234df23",
     "name": "REST Demo",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "58920369",
-    "_collection_link": "https://go.postman.co/collection/58920369-764c244a-a699-4035-941a-38f57ec62f4a?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/58920369-f5ea04ff-fde6-4a20-9108-d95e5234df23?source=collection_link"
   },
   "item": [
     {
@@ -33,7 +33,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/api/students/",
+          "raw": "http://localhost:8080/api/students",
           "protocol": "http",
           "host": [
             "localhost"
@@ -41,8 +41,7 @@
           "port": "8080",
           "path": [
             "api",
-            "students",
-            ""
+            "students"
           ]
         }
       },
@@ -87,10 +86,10 @@
               ]
             }
           },
-          "_postman_previewlanguage": null,
-          "header": null,
+          "_postman_previewlanguage": "Text",
+          "header": [],
           "cookie": [],
-          "body": null
+          "body": ""
         },
         {
           "name": "invalid_student_id_string",
@@ -114,7 +113,7 @@
           "status": "OK",
           "code": 200,
           "_postman_previewlanguage": "text",
-          "header": null,
+          "header": [],
           "cookie": [],
           "body": ""
         }
@@ -149,13 +148,47 @@
       },
       "response": [
         {
-          "name": "invalid_student_firstname_and_email",
+          "name": "invalid_student_firstname",
           "originalRequest": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"firstName\": \" \",\r\n    \"lastName\": \"Andrews\",\r\n    \"email\": \"leslie\"\r\n}",
+              "raw": "{\r\n    \"firstName\": \" \",\r\n    \"lastName\": \"Andrews\",\r\n    \"email\": \"leslie@mail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/students",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "students"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "text",
+          "header": [],
+          "cookie": [],
+          "body": ""
+        },
+        {
+          "name": "invalid_student_email",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"Izuku\",\r\n    \"lastName\": \"Midoriya\",\r\n    \"email\": \"izuku.midoriya\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -212,7 +245,78 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "invalid_student_id",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"Kurai\",\r\n    \"lastName\": \"Yama\",\r\n    \"email\": \"kurai.yama@example.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/students/130",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "students",
+                "130"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "text",
+          "header": null,
+          "cookie": [],
+          "body": ""
+        },
+        {
+          "name": "invalid_student_id_string",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"Kurai\",\r\n    \"lastName\": \"Yama\",\r\n    \"email\": \"kurai.yama@example.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/students/xyz",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "students",
+                "xyz"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "text",
+          "header": null,
+          "cookie": [],
+          "body": ""
+        }
+      ]
     },
     {
       "name": "patch_student",
@@ -242,7 +346,78 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "invalid_student_id",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"yagami.dark@example.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/students/140",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "students",
+                "140"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "text",
+          "header": null,
+          "cookie": [],
+          "body": ""
+        },
+        {
+          "name": "invalid_student_id_string",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"yagami.dark@example.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/students/ght",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "students",
+                "ght"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "text",
+          "header": null,
+          "cookie": [],
+          "body": ""
+        }
+      ]
     },
     {
       "name": "delete_student",
@@ -261,6 +436,70 @@
             "students",
             "14"
           ]
+        }
+      },
+      "response": [
+        {
+          "name": "invalid_student_id",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/students/140",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "students",
+                "140"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "text",
+          "header": null,
+          "cookie": [],
+          "body": ""
+        },
+        {
+          "name": "invalid_student_id_string",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/students/lmnop",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "students",
+                "lmnop"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "text",
+          "header": null,
+          "cookie": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
         }
       },
       "response": []
