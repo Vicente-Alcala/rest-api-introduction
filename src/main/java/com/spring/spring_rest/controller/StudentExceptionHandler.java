@@ -1,6 +1,7 @@
-package com.spring.spring_rest.exception;
+package com.spring.spring_rest.controller;
 
 import com.spring.spring_rest.entity.StudentErrorResponse;
+import com.spring.spring_rest.exception.StudentNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.http.HttpStatus;
